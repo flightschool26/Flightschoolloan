@@ -8,100 +8,75 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
       font-family: 'Inter', sans-serif;
       background: #ffffff;
       color: #0f172a;
       line-height: 1.6;
     }
-
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    .container {
-      width: min(1120px, 92%);
-      margin: 0 auto;
-    }
+    a { text-decoration: none; color: inherit; }
+    .container { width: min(1140px, 92%); margin: 0 auto; }
 
     header {
       position: sticky;
       top: 0;
       z-index: 1000;
-      background: rgba(11, 19, 32, 0.95);
+      background: rgba(11, 19, 32, 0.94);
       backdrop-filter: blur(10px);
       border-bottom: 1px solid rgba(255,255,255,0.08);
     }
-
     .nav {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 18px 0;
+      gap: 20px;
     }
-
     .logo {
       font-size: 22px;
       font-weight: 800;
       color: white;
-      letter-spacing: -0.4px;
+      letter-spacing: -0.5px;
+      white-space: nowrap;
     }
-
-    .logo span {
-      color: #d4a84f;
-    }
-
+    .logo span { color: #d4a84f; }
     .nav-links {
       display: flex;
-      gap: 28px;
       align-items: center;
+      gap: 26px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
     }
-
     .nav-links a {
       color: #e2e8f0;
       font-size: 15px;
       font-weight: 500;
     }
-
-    .nav-links a:hover {
-      color: #d4a84f;
-    }
-
+    .nav-links a:hover { color: #d4a84f; }
     .nav-btn {
       background: #d4a84f;
-      color: #0b1320;
+      color: #0b1320 !important;
       padding: 12px 18px;
       border-radius: 999px;
-      font-weight: 700;
-      font-size: 14px;
+      font-weight: 700 !important;
+      font-size: 14px !important;
     }
 
     .hero {
       background:
-        linear-gradient(135deg, rgba(11,19,32,0.95), rgba(15,23,42,0.88)),
+        linear-gradient(135deg, rgba(11,19,32,0.96), rgba(15,23,42,0.9)),
         url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
       color: white;
       padding: 110px 0 90px;
     }
-
     .hero-wrap {
       display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
+      grid-template-columns: 1.15fr 0.85fr;
       gap: 48px;
       align-items: center;
     }
-
     .eyebrow {
       display: inline-block;
       background: rgba(212,168,79,0.12);
@@ -115,31 +90,32 @@
       text-transform: uppercase;
       margin-bottom: 20px;
     }
-
     .hero h1 {
-      font-size: 58px;
-      line-height: 1.03;
-      letter-spacing: -1.8px;
+      font-size: 60px;
+      line-height: 1.02;
+      letter-spacing: -2px;
       margin-bottom: 18px;
       max-width: 760px;
     }
-
     .hero p {
       font-size: 19px;
       color: #cbd5e1;
-      max-width: 640px;
-      margin-bottom: 32px;
+      max-width: 660px;
+      margin-bottom: 18px;
     }
-
+    .hero-subline {
+      color: #f1f5f9;
+      font-weight: 600;
+      font-size: 16px;
+      margin-bottom: 30px;
+    }
     .hero-cta {
       display: flex;
       gap: 14px;
       flex-wrap: wrap;
       margin-bottom: 34px;
     }
-
-    .btn-primary,
-    .btn-secondary {
+    .btn-primary, .btn-secondary {
       display: inline-block;
       padding: 15px 24px;
       border-radius: 999px;
@@ -147,26 +123,17 @@
       font-size: 15px;
       transition: 0.2s ease;
     }
-
     .btn-primary {
       background: #d4a84f;
       color: #0b1320;
     }
-
-    .btn-primary:hover {
-      transform: translateY(-1px);
-      opacity: 0.96;
-    }
-
+    .btn-primary:hover { transform: translateY(-1px); opacity: 0.96; }
     .btn-secondary {
       border: 1px solid rgba(255,255,255,0.2);
       color: white;
       background: rgba(255,255,255,0.04);
     }
-
-    .btn-secondary:hover {
-      background: rgba(255,255,255,0.09);
-    }
+    .btn-secondary:hover { background: rgba(255,255,255,0.09); }
 
     .hero-stats {
       display: grid;
@@ -174,18 +141,15 @@
       gap: 18px;
       margin-top: 12px;
     }
-
     .stat {
-      padding-top: 10px;
+      padding-top: 12px;
       border-top: 1px solid rgba(255,255,255,0.12);
     }
-
     .stat strong {
       display: block;
       font-size: 24px;
       color: white;
     }
-
     .stat span {
       color: #94a3b8;
       font-size: 14px;
@@ -194,45 +158,39 @@
     .card {
       background: rgba(255,255,255,0.08);
       border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 28px;
+      border-radius: 30px;
       padding: 22px;
       backdrop-filter: blur(12px);
       box-shadow: 0 20px 40px rgba(0,0,0,0.22);
     }
-
     .form-box {
       background: white;
       color: #0f172a;
-      border-radius: 22px;
-      padding: 24px;
+      border-radius: 24px;
+      padding: 26px;
     }
-
     .form-box h3 {
-      font-size: 25px;
+      font-size: 26px;
       margin-bottom: 8px;
     }
-
     .form-box p {
       color: #64748b;
       font-size: 14px;
       margin-bottom: 18px;
     }
-
     .form-grid {
       display: grid;
       gap: 12px;
     }
-
-    .form-grid input,
-    .form-grid select {
+    .form-grid input, .form-grid select, .form-grid textarea {
       width: 100%;
       padding: 14px 14px;
       border-radius: 14px;
       border: 1px solid #e2e8f0;
       font-size: 15px;
       font-family: inherit;
+      resize: vertical;
     }
-
     .form-grid button {
       margin-top: 8px;
       border: none;
@@ -244,16 +202,20 @@
       font-weight: 700;
       cursor: pointer;
     }
-
-    .section {
-      padding: 88px 0;
+    .form-note {
+      margin-top: 10px;
+      font-size: 12px;
+      color: #64748b;
     }
 
+    .section { padding: 90px 0; }
     .section-title {
       text-align: center;
-      margin-bottom: 46px;
+      margin-bottom: 48px;
+      max-width: 840px;
+      margin-left: auto;
+      margin-right: auto;
     }
-
     .section-title p {
       color: #b8892d;
       font-weight: 700;
@@ -262,27 +224,29 @@
       font-size: 12px;
       margin-bottom: 10px;
     }
-
     .section-title h2 {
-      font-size: 40px;
+      font-size: 42px;
       line-height: 1.1;
       letter-spacing: -1.2px;
+      margin-bottom: 10px;
+    }
+    .section-title span {
+      color: #64748b;
+      font-size: 17px;
     }
 
-    .features {
+    .features, .steps, .trust-grid, .faq-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
       gap: 22px;
     }
-
-    .feature {
+    .features, .steps, .trust-grid { grid-template-columns: repeat(3, 1fr); }
+    .feature, .step, .trust-item, .faq-item {
       background: #f8fafc;
       border: 1px solid #e2e8f0;
       border-radius: 24px;
       padding: 28px;
     }
-
-    .feature-icon {
+    .feature-icon, .step-number {
       width: 54px;
       height: 54px;
       border-radius: 50%;
@@ -294,80 +258,35 @@
       font-weight: 800;
       margin-bottom: 18px;
     }
-
-    .feature h3 {
+    .step-number { color: white; width: 44px; height: 44px; }
+    .feature h3, .step h3, .trust-item h3, .faq-item h3 {
       font-size: 22px;
       margin-bottom: 10px;
     }
-
-    .feature p {
+    .feature p, .step p, .trust-item p, .faq-item p {
       color: #64748b;
       font-size: 15px;
     }
 
-    .band {
-      background: #f8fafc;
-    }
-
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 22px;
-    }
-
-    .step {
-      background: white;
-      border: 1px solid #e2e8f0;
-      border-radius: 24px;
-      padding: 28px;
-    }
-
-    .step-number {
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      background: #0b1320;
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      margin-bottom: 16px;
-    }
-
-    .step h3 {
-      font-size: 21px;
-      margin-bottom: 10px;
-    }
-
-    .step p {
-      color: #64748b;
-      font-size: 15px;
-    }
+    .band { background: #f8fafc; }
 
     .partner-section {
       background: #0b1320;
       color: white;
-      border-radius: 32px;
-      padding: 48px;
+      border-radius: 34px;
+      padding: 52px;
       display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
+      grid-template-columns: 1.1fr 0.9fr;
       gap: 32px;
       align-items: center;
     }
-
-    .partner-section p {
-      color: #cbd5e1;
-      max-width: 680px;
-    }
-
+    .partner-section p { color: #cbd5e1; max-width: 680px; }
     .partner-list {
       background: rgba(255,255,255,0.06);
       border: 1px solid rgba(255,255,255,0.1);
       border-radius: 24px;
       padding: 26px;
     }
-
     .partner-list ul {
       list-style: none;
       display: grid;
@@ -380,13 +299,11 @@
       text-align: center;
       padding: 90px 0;
     }
-
     .final-cta h2 {
-      font-size: 42px;
+      font-size: 44px;
       letter-spacing: -1px;
       margin-bottom: 14px;
     }
-
     .final-cta p {
       color: #64748b;
       max-width: 720px;
@@ -397,49 +314,35 @@
     footer {
       background: #0b1320;
       color: #94a3b8;
-      text-align: center;
       padding: 28px 20px;
       font-size: 14px;
     }
+    .footer-wrap {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .footer-links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+    .footer-links a:hover { color: white; }
 
     @media (max-width: 980px) {
-      .hero-wrap,
-      .partner-section,
-      .features,
-      .steps {
-        grid-template-columns: 1fr;
-      }
-
-      .hero h1 {
-        font-size: 42px;
-      }
-
-      .hero-stats {
-        grid-template-columns: 1fr;
-      }
+      .hero-wrap, .partner-section, .features, .steps, .trust-grid { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 44px; }
+      .hero-stats { grid-template-columns: 1fr; }
     }
-
-    @media (max-width: 700px) {
-      .nav-links {
-        display: none;
-      }
-
-      .hero {
-        padding: 90px 0 70px;
-      }
-
-      .hero h1 {
-        font-size: 36px;
-      }
-
-      .section-title h2,
-      .final-cta h2 {
-        font-size: 30px;
-      }
-
-      .partner-section {
-        padding: 30px;
-      }
+    @media (max-width: 760px) {
+      .nav-links { display: none; }
+      .hero { padding: 90px 0 70px; }
+      .hero h1 { font-size: 36px; }
+      .section-title h2, .final-cta h2 { font-size: 31px; }
+      .partner-section { padding: 32px; }
+      .faq-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -452,7 +355,7 @@
         <a href="#how">How It Works</a>
         <a href="#students">Students</a>
         <a href="#schools">Flight Schools</a>
-        <a href="#apply">Apply</a>
+        <a href="#faq">FAQ</a>
         <a href="#apply" class="nav-btn">Get Pre-Approved</a>
       </div>
     </div>
@@ -462,11 +365,25 @@
     <div class="container hero-wrap">
       <div>
         <div class="eyebrow">Built for Future Pilots</div>
+        <div style="margin-bottom: 18px; display: flex; gap: 10px; flex-wrap: wrap;">
+          <span style="display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.12); font-size:13px; font-weight:600; color:#e2e8f0;">✈ Aviation-focused financing</span>
+          <span style="display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.12); font-size:13px; font-weight:600; color:#e2e8f0;">🛩 Built for flight training</span>
+        </div>
         <h1>Flight school loans made simple.</h1>
         <p>
           Flexible financing solutions for student pilots and flight training schools.
           Built to help qualified borrowers start training sooner.
         </p>
+        <div class="hero-subline">
+          Financing for Private Pilot, Instrument, Commercial, and career training programs nationwide.
+        </div>
+        <div style="display:flex; gap:18px; flex-wrap:wrap; margin-bottom:30px; color:#cbd5e1; font-size:14px; font-weight:500;">
+          <span>Private Pilot</span>
+          <span>Instrument</span>
+          <span>Commercial</span>
+          <span>CFI / CFII</span>
+          <span>Career Programs</span>
+        </div>
 
         <div class="hero-cta">
           <a href="#apply" class="btn-primary">Apply for Financing</a>
@@ -483,8 +400,8 @@
             <span>Typical training range</span>
           </div>
           <div class="stat">
-            <strong>Student First</strong>
-            <span>Designed for flight training</span>
+            <strong>Nationwide</strong>
+            <span>Serving student pilots across the U.S.</span>
           </div>
         </div>
       </div>
@@ -497,7 +414,16 @@
           <form class="form-grid">
             <input type="text" placeholder="Full name" />
             <input type="email" placeholder="Email address" />
+            <input type="tel" placeholder="Phone number" />
             <input type="text" placeholder="Flight school" />
+            <select>
+              <option>Program sought</option>
+              <option>Private Pilot</option>
+              <option>Instrument</option>
+              <option>Commercial</option>
+              <option>CFI / CFII</option>
+              <option>Career Program</option>
+            </select>
             <input type="text" placeholder="Estimated training cost" />
             <select>
               <option>Credit score range</option>
@@ -511,8 +437,10 @@
               <option>Yes</option>
               <option>No</option>
             </select>
+            <textarea rows="4" placeholder="Anything else you'd like us to know?"></textarea>
             <button type="submit">Get Pre-Approved</button>
           </form>
+          <div class="form-note">This is a pre-approval request only. Final approval and funding terms are determined after review.</div>
         </div>
       </div>
     </div>
@@ -523,23 +451,42 @@
       <div class="section-title">
         <p>Why Students Choose Us</p>
         <h2>A cleaner path to funding your training.</h2>
+        <span>Designed to make the first step easier for future pilots who are serious about getting started.</span>
+      </div>
+
+      <div style="margin: 0 auto 30px; max-width: 980px; background: linear-gradient(135deg, #0b1320, #172033); color: white; border-radius: 26px; padding: 28px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; box-shadow: 0 18px 36px rgba(2,6,23,0.08);">
+        <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; padding: 20px;">
+          <div style="font-size: 12px; text-transform: uppercase; letter-spacing: .12em; color: #f7d488; margin-bottom: 8px; font-weight: 700;">Mission</div>
+          <div style="font-size: 18px; font-weight: 700; margin-bottom: 8px;">Help more pilots get airborne</div>
+          <div style="font-size: 14px; color: #cbd5e1;">Built around the real path from first lesson to advanced ratings.</div>
+        </div>
+        <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; padding: 20px;">
+          <div style="font-size: 12px; text-transform: uppercase; letter-spacing: .12em; color: #f7d488; margin-bottom: 8px; font-weight: 700;">Programs</div>
+          <div style="font-size: 18px; font-weight: 700; margin-bottom: 8px;">From PPL to career track</div>
+          <div style="font-size: 14px; color: #cbd5e1;">Aviation-focused support for the training pilots actually pursue.</div>
+        </div>
+        <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; padding: 20px;">
+          <div style="font-size: 12px; text-transform: uppercase; letter-spacing: .12em; color: #f7d488; margin-bottom: 8px; font-weight: 700;">Audience</div>
+          <div style="font-size: 18px; font-weight: 700; margin-bottom: 8px;">Student pilots nationwide</div>
+          <div style="font-size: 14px; color: #cbd5e1;">Designed to feel familiar and credible to people in aviation.</div>
+        </div>
       </div>
 
       <div class="features">
         <div class="feature">
           <div class="feature-icon">01</div>
           <h3>Fast Process</h3>
-          <p>Students can begin with a simple online request instead of a confusing lending process.</p>
+          <p>Start with a simple request instead of a confusing lending experience.</p>
         </div>
         <div class="feature">
           <div class="feature-icon">02</div>
           <h3>Aviation Focused</h3>
-          <p>Built specifically for flight training rather than generic student lending.</p>
+          <p>Built specifically for flight training rather than generic consumer lending.</p>
         </div>
         <div class="feature">
           <div class="feature-icon">03</div>
-          <h3>School Alignment</h3>
-          <p>Made to work smoothly with partner flight schools so students can start faster.</p>
+          <h3>Nationwide Reach</h3>
+          <p>Serving student pilots and partner schools across the United States.</p>
         </div>
       </div>
     </div>
@@ -550,6 +497,7 @@
       <div class="section-title">
         <p>How It Works</p>
         <h2>Three simple steps.</h2>
+        <span>A straightforward path from application to training.</span>
       </div>
 
       <div class="steps">
@@ -572,6 +520,30 @@
     </div>
   </section>
 
+  <section class="section">
+    <div class="container">
+      <div class="section-title">
+        <p>What We Support</p>
+        <h2>Built for career-minded aviation training.</h2>
+        <span>Structured for students pursuing serious flight training programs.</span>
+      </div>
+      <div class="trust-grid">
+        <div class="trust-item">
+          <h3>Private Pilot Training</h3>
+          <p>Support for students beginning their path in aviation.</p>
+        </div>
+        <div class="trust-item">
+          <h3>Advanced Ratings</h3>
+          <p>Instrument, Commercial, CFI, and accelerated career-focused training.</p>
+        </div>
+        <div class="trust-item">
+          <h3>Flight School Partnerships</h3>
+          <p>Built to help schools convert more serious students into enrolled trainees.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="section" id="schools">
     <div class="container">
       <div class="partner-section">
@@ -579,21 +551,53 @@
           <div class="eyebrow">For Flight Schools</div>
           <h2 style="font-size: 42px; line-height: 1.05; margin-bottom: 14px;">Help more students start sooner.</h2>
           <p>
-            FlightSchoolLoan.com is being built to support flight schools with a cleaner financing
-            experience for students pursuing aviation careers.
+            FlightSchoolLoan.com is built to support flight schools with a cleaner financing
+            experience for students pursuing aviation careers nationwide.
           </p>
         </div>
 
         <div class="partner-list">
+          <div style="display:flex; align-items:center; gap:10px; margin-bottom:16px; color:#f7d488; font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:.12em;">
+            <span>✈</span>
+            <span>Aviation Partnership Focus</span>
+          </div>
           <ul>
             <li>• Faster student start dates</li>
             <li>• Cleaner intake experience</li>
             <li>• Built for career-minded pilots</li>
-            <li>• Arizona first, nationwide growth</li>
+            <li>• Serving student pilots nationwide</li>
           </ul>
           <div style="margin-top: 20px;">
             <a href="#apply" class="btn-primary">Become a Partner School</a>
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section band" id="faq">
+    <div class="container">
+      <div class="section-title">
+        <p>FAQ</p>
+        <h2>Common questions.</h2>
+        <span>Simple answers for students and schools.</span>
+      </div>
+      <div class="faq-grid">
+        <div class="faq-item">
+          <h3>What can flight school loans cover?</h3>
+          <p>They may be used for qualifying flight training programs and related training costs, subject to review and approval.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Do I need a cosigner?</h3>
+          <p>Some applicants may benefit from a cosigner depending on credit profile, program cost, and underwriting criteria.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Do you work with schools nationwide?</h3>
+          <p>Yes. FlightSchoolLoan.com is being built to support student pilots and partner schools across the United States.</p>
+        </div>
+        <div class="faq-item">
+          <h3>How fast is the initial review?</h3>
+          <p>The goal is to provide a clean first step and a quick review timeline for qualified applicants.</p>
         </div>
       </div>
     </div>
@@ -610,8 +614,25 @@
     </div>
   </section>
 
+  <section class="section" style="padding-top:0;">
+    <div class="container">
+      <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:28px; padding:32px; text-align:center;">
+        <div style="font-size:12px; text-transform:uppercase; letter-spacing:.14em; color:#b8892d; font-weight:700; margin-bottom:10px;">Aviation Focus</div>
+        <h3 style="font-size:32px; line-height:1.1; letter-spacing:-1px; margin-bottom:12px;">Built around the real pilot training journey.</h3>
+        <p style="max-width:760px; margin:0 auto; color:#64748b; font-size:17px;">From first-time student pilots to advanced rating applicants, FlightSchoolLoan.com is designed to feel familiar to people in aviation and professional enough for schools, lenders, and serious borrowers.</p>
+      </div>
+    </div>
+  </section>
+
   <footer>
-    © 2026 FlightSchoolLoan.com. All rights reserved.
+    <div class="container footer-wrap">
+      <div>© 2026 FlightSchoolLoan.com. All rights reserved.</div>
+      <div class="footer-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Use</a>
+        <a href="#apply">Apply</a>
+      </div>
+    </div>
   </footer>
 
 </body>
