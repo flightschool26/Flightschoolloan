@@ -4,83 +4,224 @@
   <meta charset="UTF-8" />
   <title>FlightSchoolLoan.com</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="description"
+    content="Flight school financing for student pilots and aviation training programs nationwide."
+  />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
   <style>
+    :root {
+      --navy-950: #06101c;
+      --navy-900: #0a1728;
+      --navy-850: #0d1c2f;
+      --navy-800: #13243a;
+      --navy-700: #1b3554;
+      --gold: #d4a84f;
+      --gold-soft: #f4d58d;
+      --sky: #dbeafe;
+      --white: #ffffff;
+      --text: #0f172a;
+      --muted: #64748b;
+      --line: #e2e8f0;
+      --bg: #ffffff;
+      --bg-soft: #f8fafc;
+      --success: #0f766e;
+      --shadow-lg: 0 22px 45px rgba(2, 6, 23, 0.14);
+      --shadow-md: 0 14px 28px rgba(2, 6, 23, 0.08);
+      --radius-xl: 30px;
+      --radius-lg: 24px;
+      --radius-md: 18px;
+      --radius-sm: 14px;
+    }
+
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body {
       font-family: 'Inter', sans-serif;
-      background: #ffffff;
-      color: #0f172a;
+      background: var(--bg);
+      color: var(--text);
       line-height: 1.6;
     }
+
     a { text-decoration: none; color: inherit; }
-    .container { width: min(1140px, 92%); margin: 0 auto; }
+    button, input, select, textarea { font: inherit; }
+    img { max-width: 100%; display: block; }
+
+    .container {
+      width: min(1140px, 92%);
+      margin: 0 auto;
+    }
 
     header {
       position: sticky;
       top: 0;
       z-index: 1000;
-      background: rgba(11, 19, 32, 0.94);
-      backdrop-filter: blur(10px);
+      background: rgba(6, 16, 28, 0.88);
+      backdrop-filter: blur(14px);
       border-bottom: 1px solid rgba(255,255,255,0.08);
     }
+
     .nav {
+      min-height: 78px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      padding: 18px 0;
-      gap: 20px;
+      justify-content: space-between;
+      gap: 18px;
     }
+
     .logo {
       font-size: 22px;
       font-weight: 800;
-      color: white;
+      color: var(--white);
       letter-spacing: -0.5px;
       white-space: nowrap;
     }
-    .logo span { color: #d4a84f; }
-    .nav-links {
+
+    .logo span { color: var(--gold); }
+
+    .desktop-nav {
       display: flex;
       align-items: center;
-      gap: 26px;
+      gap: 24px;
       flex-wrap: wrap;
       justify-content: flex-end;
     }
-    .nav-links a {
-      color: #e2e8f0;
+
+    .desktop-nav a {
+      color: #dbe4ef;
       font-size: 15px;
       font-weight: 500;
     }
-    .nav-links a:hover { color: #d4a84f; }
-    .nav-btn {
-      background: #d4a84f;
-      color: #0b1320 !important;
-      padding: 12px 18px;
+
+    .desktop-nav a:hover { color: var(--gold); }
+
+    .nav-btn,
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: var(--gold);
+      color: var(--navy-900);
+      padding: 14px 22px;
       border-radius: 999px;
-      font-weight: 700 !important;
-      font-size: 14px !important;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 10px 24px rgba(212,168,79,0.18);
+      transition: 0.2s ease;
+    }
+
+    .nav-btn:hover,
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      opacity: 0.97;
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 22px;
+      border-radius: 999px;
+      font-weight: 700;
+      border: 1px solid rgba(255,255,255,0.22);
+      color: var(--white);
+      background: rgba(255,255,255,0.05);
+      transition: 0.2s ease;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.10);
+    }
+
+    .mobile-toggle {
+      display: none;
+      width: 46px;
+      height: 46px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.06);
+      color: white;
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+    }
+
+    .mobile-menu {
+      display: none;
+      padding: 0 0 18px;
+    }
+
+    .mobile-menu.open {
+      display: block;
+    }
+
+    .mobile-menu-inner {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
+      padding: 14px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .mobile-menu a {
+      color: #e2e8f0;
+      padding: 12px 14px;
+      border-radius: 12px;
+      font-weight: 600;
+    }
+
+    .mobile-menu a:hover {
+      background: rgba(255,255,255,0.06);
+    }
+
+    .mobile-menu .mobile-cta {
+      background: var(--gold);
+      color: var(--navy-900);
+      text-align: center;
     }
 
     .hero {
+      position: relative;
+      overflow: hidden;
       background:
-        linear-gradient(135deg, rgba(11,19,32,0.96), rgba(15,23,42,0.9)),
+        linear-gradient(135deg, rgba(6,16,28,0.96), rgba(11,23,40,0.88)),
         url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
       color: white;
-      padding: 110px 0 90px;
+      padding: 110px 0 95px;
     }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 64px 64px;
+      opacity: 0.16;
+      pointer-events: none;
+    }
+
     .hero-wrap {
+      position: relative;
+      z-index: 1;
       display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 48px;
+      grid-template-columns: 1.12fr 0.88fr;
+      gap: 46px;
       align-items: center;
     }
+
     .eyebrow {
       display: inline-block;
       background: rgba(212,168,79,0.12);
-      color: #f7d488;
+      color: var(--gold-soft);
       border: 1px solid rgba(212,168,79,0.35);
       padding: 8px 14px;
       border-radius: 999px;
@@ -88,134 +229,195 @@
       font-weight: 700;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
     }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      font-size: 13px;
+      font-weight: 600;
+      color: #e2e8f0;
+    }
+
     .hero h1 {
-      font-size: 60px;
+      font-size: 62px;
       line-height: 1.02;
       letter-spacing: -2px;
       margin-bottom: 18px;
       max-width: 760px;
     }
+
     .hero p {
       font-size: 19px;
       color: #cbd5e1;
-      max-width: 660px;
+      max-width: 650px;
       margin-bottom: 18px;
     }
+
     .hero-subline {
       color: #f1f5f9;
       font-weight: 600;
       font-size: 16px;
       margin-bottom: 30px;
     }
+
     .hero-cta {
       display: flex;
       gap: 14px;
       flex-wrap: wrap;
-      margin-bottom: 34px;
+      margin-bottom: 30px;
     }
-    .btn-primary, .btn-secondary {
-      display: inline-block;
-      padding: 15px 24px;
-      border-radius: 999px;
-      font-weight: 700;
-      font-size: 15px;
-      transition: 0.2s ease;
+
+    .program-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      margin-bottom: 30px;
+      color: #cbd5e1;
+      font-size: 14px;
+      font-weight: 500;
     }
-    .btn-primary {
-      background: #d4a84f;
-      color: #0b1320;
-    }
-    .btn-primary:hover { transform: translateY(-1px); opacity: 0.96; }
-    .btn-secondary {
-      border: 1px solid rgba(255,255,255,0.2);
-      color: white;
-      background: rgba(255,255,255,0.04);
-    }
-    .btn-secondary:hover { background: rgba(255,255,255,0.09); }
 
     .hero-stats {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 18px;
-      margin-top: 12px;
+      margin-top: 10px;
     }
+
     .stat {
       padding-top: 12px;
       border-top: 1px solid rgba(255,255,255,0.12);
     }
+
     .stat strong {
       display: block;
       font-size: 24px;
       color: white;
     }
+
     .stat span {
       color: #94a3b8;
       font-size: 14px;
     }
 
-    .card {
+    .glass-card {
       background: rgba(255,255,255,0.08);
       border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 30px;
+      border-radius: var(--radius-xl);
       padding: 22px;
       backdrop-filter: blur(12px);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.22);
+      box-shadow: 0 24px 48px rgba(0,0,0,0.22);
     }
+
     .form-box {
       background: white;
-      color: #0f172a;
-      border-radius: 24px;
+      color: var(--text);
+      border-radius: var(--radius-lg);
       padding: 26px;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);
     }
+
     .form-box h3 {
       font-size: 26px;
       margin-bottom: 8px;
     }
-    .form-box p {
-      color: #64748b;
+
+    .form-box > p {
+      color: var(--muted);
       font-size: 14px;
       margin-bottom: 18px;
     }
+
     .form-grid {
       display: grid;
       gap: 12px;
     }
-    .form-grid input, .form-grid select, .form-grid textarea {
+
+    .form-grid input,
+    .form-grid select,
+    .form-grid textarea {
       width: 100%;
       padding: 14px 14px;
       border-radius: 14px;
-      border: 1px solid #e2e8f0;
+      border: 1px solid var(--line);
+      background: #fcfdff;
       font-size: 15px;
-      font-family: inherit;
+      transition: 0.2s ease;
       resize: vertical;
     }
+
+    .form-grid input:focus,
+    .form-grid select:focus,
+    .form-grid textarea:focus {
+      outline: none;
+      border-color: #94a3b8;
+      box-shadow: 0 0 0 4px rgba(148,163,184,0.12);
+    }
+
     .form-grid button {
       margin-top: 8px;
       border: none;
-      background: #0b1320;
+      background: var(--navy-900);
       color: white;
       padding: 14px;
       border-radius: 14px;
       font-size: 15px;
       font-weight: 700;
       cursor: pointer;
+      transition: 0.2s ease;
     }
+
+    .form-grid button:hover {
+      background: var(--navy-800);
+      transform: translateY(-1px);
+    }
+
     .form-note {
       margin-top: 10px;
       font-size: 12px;
-      color: #64748b;
+      color: var(--muted);
+      line-height: 1.5;
     }
 
-    .section { padding: 90px 0; }
+    .trust-badges {
+      margin-top: 14px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .trust-badge {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--navy-800);
+      background: #f8fafc;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 8px 12px;
+    }
+
+    .section { padding: 92px 0; }
+
     .section-title {
       text-align: center;
-      margin-bottom: 48px;
-      max-width: 840px;
-      margin-left: auto;
-      margin-right: auto;
+      max-width: 860px;
+      margin: 0 auto 48px;
     }
+
     .section-title p {
       color: #b8892d;
       font-weight: 700;
@@ -224,69 +426,220 @@
       font-size: 12px;
       margin-bottom: 10px;
     }
+
     .section-title h2 {
       font-size: 42px;
       line-height: 1.1;
       letter-spacing: -1.2px;
       margin-bottom: 10px;
     }
+
     .section-title span {
-      color: #64748b;
+      color: var(--muted);
       font-size: 17px;
     }
 
-    .features, .steps, .trust-grid, .faq-grid {
+    .band { background: var(--bg-soft); }
+
+    .feature-grid,
+    .steps,
+    .support-grid,
+    .faq-grid,
+    .disclosure-grid {
       display: grid;
       gap: 22px;
     }
-    .features, .steps, .trust-grid { grid-template-columns: repeat(3, 1fr); }
-    .feature, .step, .trust-item, .faq-item {
-      background: #f8fafc;
-      border: 1px solid #e2e8f0;
-      border-radius: 24px;
-      padding: 28px;
+
+    .feature-grid,
+    .steps,
+    .support-grid,
+    .disclosure-grid {
+      grid-template-columns: repeat(3, 1fr);
     }
-    .feature-icon, .step-number {
+
+    .faq-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .card,
+    .feature,
+    .step,
+    .support-card,
+    .faq-item,
+    .disclosure-card,
+    .calc-card,
+    .trust-strip-card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      box-shadow: var(--shadow-md);
+    }
+
+    .feature-icon,
+    .step-number {
       width: 54px;
       height: 54px;
       border-radius: 50%;
-      background: #0b1320;
-      color: #d4a84f;
+      background: var(--navy-900);
+      color: var(--gold);
       display: flex;
       align-items: center;
       justify-content: center;
       font-weight: 800;
       margin-bottom: 18px;
     }
-    .step-number { color: white; width: 44px; height: 44px; }
-    .feature h3, .step h3, .trust-item h3, .faq-item h3 {
+
+    .step-number {
+      color: white;
+      width: 44px;
+      height: 44px;
+    }
+
+    .feature h3,
+    .step h3,
+    .support-card h3,
+    .faq-item h3,
+    .disclosure-card h3,
+    .calc-card h3,
+    .trust-strip-card h3 {
       font-size: 22px;
       margin-bottom: 10px;
     }
-    .feature p, .step p, .trust-item p, .faq-item p {
-      color: #64748b;
+
+    .feature p,
+    .step p,
+    .support-card p,
+    .faq-item p,
+    .disclosure-card p,
+    .trust-strip-card p,
+    .calc-card p {
+      color: var(--muted);
       font-size: 15px;
     }
 
-    .band { background: #f8fafc; }
+    .trust-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      margin-top: 26px;
+    }
+
+    .trust-strip-card {
+      background: linear-gradient(180deg, #ffffff, #fbfdff);
+      padding: 22px;
+    }
+
+    .trust-strip-card h3 {
+      font-size: 16px;
+      margin-bottom: 6px;
+    }
+
+    .trust-strip-card p {
+      font-size: 14px;
+    }
+
+    .calculator-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .calc-card label {
+      display: block;
+      font-weight: 700;
+      margin: 18px 0 8px;
+      color: var(--navy-900);
+      font-size: 14px;
+    }
+
+    .calc-card input[type="range"] {
+      width: 100%;
+      accent-color: var(--gold);
+    }
+
+    .range-row,
+    .calc-result-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      margin-top: 8px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .range-row strong,
+    .calc-result-row strong {
+      color: var(--navy-900);
+      font-size: 15px;
+      text-align: right;
+    }
+
+    .calc-hero-result {
+      background: linear-gradient(135deg, var(--navy-900), var(--navy-700));
+      color: white;
+      border-radius: 24px;
+      padding: 28px;
+      margin-bottom: 18px;
+      box-shadow: 0 22px 45px rgba(2, 6, 23, 0.22);
+    }
+
+    .calc-hero-result p {
+      color: #d8e1ea;
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+
+    .calc-hero-result h3 {
+      margin: 0;
+      font-size: 44px;
+      letter-spacing: -1px;
+      line-height: 1;
+    }
+
+    .calc-results {
+      display: grid;
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    .calc-result-row {
+      padding: 14px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .calc-note {
+      margin-top: 18px;
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
 
     .partner-section {
-      background: #0b1320;
+      background: linear-gradient(135deg, var(--navy-950), var(--navy-800));
       color: white;
       border-radius: 34px;
       padding: 52px;
       display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
+      grid-template-columns: 1.08fr 0.92fr;
       gap: 32px;
       align-items: center;
+      box-shadow: 0 26px 50px rgba(2, 6, 23, 0.18);
     }
-    .partner-section p { color: #cbd5e1; max-width: 680px; }
+
+    .partner-section p {
+      color: #cbd5e1;
+      max-width: 680px;
+    }
+
     .partner-list {
       background: rgba(255,255,255,0.06);
       border: 1px solid rgba(255,255,255,0.1);
       border-radius: 24px;
       padding: 26px;
     }
+
     .partner-list ul {
       list-style: none;
       display: grid;
@@ -295,54 +648,121 @@
       font-size: 15px;
     }
 
+    .aviation-focus-box {
+      background: linear-gradient(180deg, #ffffff, #fbfdff);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      padding: 32px;
+      text-align: center;
+      box-shadow: var(--shadow-md);
+    }
+
+    .aviation-focus-box h3 {
+      font-size: 32px;
+      line-height: 1.1;
+      letter-spacing: -1px;
+      margin-bottom: 12px;
+    }
+
+    .aviation-focus-box p {
+      max-width: 760px;
+      margin: 0 auto;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
     .final-cta {
       text-align: center;
-      padding: 90px 0;
+      padding: 92px 0;
     }
+
     .final-cta h2 {
       font-size: 44px;
       letter-spacing: -1px;
       margin-bottom: 14px;
     }
+
     .final-cta p {
-      color: #64748b;
+      color: var(--muted);
       max-width: 720px;
       margin: 0 auto 28px;
       font-size: 18px;
     }
 
     footer {
-      background: #0b1320;
-      color: #94a3b8;
-      padding: 28px 20px;
+      background: var(--navy-950);
+      color: #9fb0c3;
+      padding: 36px 20px;
       font-size: 14px;
     }
+
     .footer-wrap {
-      display: flex;
-      justify-content: space-between;
-      gap: 20px;
-      flex-wrap: wrap;
-      align-items: center;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 22px;
+      align-items: start;
     }
+
+    .footer-brand {
+      font-weight: 700;
+      color: white;
+      margin-bottom: 8px;
+    }
+
+    .footer-disclosure {
+      line-height: 1.6;
+      max-width: 760px;
+    }
+
     .footer-links {
       display: flex;
-      gap: 18px;
+      justify-content: flex-end;
+      gap: 16px;
       flex-wrap: wrap;
     }
-    .footer-links a:hover { color: white; }
+
+    .footer-links a:hover {
+      color: white;
+    }
 
     @media (max-width: 980px) {
-      .hero-wrap, .partner-section, .features, .steps, .trust-grid { grid-template-columns: 1fr; }
-      .hero h1 { font-size: 44px; }
+      .hero-wrap,
+      .calculator-wrap,
+      .feature-grid,
+      .steps,
+      .support-grid,
+      .disclosure-grid,
+      .trust-strip,
+      .partner-section,
+      .footer-wrap {
+        grid-template-columns: 1fr;
+      }
+
+      .faq-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h1 { font-size: 46px; }
       .hero-stats { grid-template-columns: 1fr; }
+      .footer-links { justify-content: flex-start; }
     }
+
+    @media (max-width: 820px) {
+      .desktop-nav { display: none; }
+      .mobile-toggle { display: inline-flex; }
+    }
+
     @media (max-width: 760px) {
-      .nav-links { display: none; }
-      .hero { padding: 90px 0 70px; }
+      .hero {
+        padding: 90px 0 70px;
+      }
+
       .hero h1 { font-size: 36px; }
-      .section-title h2, .final-cta h2 { font-size: 31px; }
+      .section-title h2,
+      .final-cta h2 { font-size: 31px; }
       .partner-section { padding: 32px; }
-      .faq-grid { grid-template-columns: 1fr; }
+      .calc-hero-result h3 { font-size: 34px; }
+      .aviation-focus-box h3 { font-size: 28px; }
     }
   </style>
 </head>
@@ -351,12 +771,29 @@
   <header>
     <div class="container nav">
       <div class="logo">Flight<span>School</span>Loan</div>
-      <div class="nav-links">
+
+      <nav class="desktop-nav">
         <a href="#how">How It Works</a>
+        <a href="#calculator">Calculator</a>
         <a href="#students">Students</a>
         <a href="#schools">Flight Schools</a>
         <a href="#faq">FAQ</a>
         <a href="#apply" class="nav-btn">Get Pre-Approved</a>
+      </nav>
+
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Open menu">
+        ☰
+      </button>
+    </div>
+
+    <div class="container mobile-menu" id="mobileMenu">
+      <div class="mobile-menu-inner">
+        <a href="#how">How It Works</a>
+        <a href="#calculator">Calculator</a>
+        <a href="#students">Students</a>
+        <a href="#schools">Flight Schools</a>
+        <a href="#faq">FAQ</a>
+        <a href="#apply" class="mobile-cta">Get Pre-Approved</a>
       </div>
     </div>
   </header>
@@ -365,19 +802,25 @@
     <div class="container hero-wrap">
       <div>
         <div class="eyebrow">Built for Future Pilots</div>
-        <div style="margin-bottom: 18px; display: flex; gap: 10px; flex-wrap: wrap;">
-          <span style="display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.12); font-size:13px; font-weight:600; color:#e2e8f0;">✈ Aviation-focused financing</span>
-          <span style="display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.12); font-size:13px; font-weight:600; color:#e2e8f0;">🛩 Built for flight training</span>
+
+        <div class="tag-row">
+          <span class="tag">✈ Aviation-focused financing</span>
+          <span class="tag">🛩 Built for flight training</span>
+          <span class="tag">📍 Nationwide support</span>
         </div>
+
         <h1>Flight school loans made simple.</h1>
+
         <p>
           Flexible financing solutions for student pilots and flight training schools.
           Built to help qualified borrowers start training sooner.
         </p>
+
         <div class="hero-subline">
-          Financing for Private Pilot, Instrument, Commercial, and career training programs nationwide.
+          Financing for Private Pilot, Instrument, Commercial, CFI, CFII, and career training programs nationwide.
         </div>
-        <div style="display:flex; gap:18px; flex-wrap:wrap; margin-bottom:30px; color:#cbd5e1; font-size:14px; font-weight:500;">
+
+        <div class="program-row">
           <span>Private Pilot</span>
           <span>Instrument</span>
           <span>Commercial</span>
@@ -387,7 +830,7 @@
 
         <div class="hero-cta">
           <a href="#apply" class="btn-primary">Apply for Financing</a>
-          <a href="#schools" class="btn-secondary">Partner With Us</a>
+          <a href="#calculator" class="btn-secondary">Estimate Your Payment</a>
         </div>
 
         <div class="hero-stats">
@@ -406,7 +849,7 @@
         </div>
       </div>
 
-      <div class="card" id="apply">
+      <div class="glass-card" id="apply">
         <div class="form-box">
           <h3>Check Your Eligibility</h3>
           <p>Start with a simple pre-approval request.</p>
@@ -416,6 +859,7 @@
             <input type="email" placeholder="Email address" />
             <input type="tel" placeholder="Phone number" />
             <input type="text" placeholder="Flight school" />
+
             <select>
               <option>Program sought</option>
               <option>Private Pilot</option>
@@ -424,7 +868,19 @@
               <option>CFI / CFII</option>
               <option>Career Program</option>
             </select>
+
+            <select>
+              <option>FAA medical status</option>
+              <option>First Class Medical</option>
+              <option>Second Class Medical</option>
+              <option>Third Class Medical</option>
+              <option>BasicMed</option>
+              <option>Medical scheduled / pending</option>
+              <option>No medical yet</option>
+            </select>
+
             <input type="text" placeholder="Estimated training cost" />
+
             <select>
               <option>Credit score range</option>
               <option>750+</option>
@@ -432,15 +888,126 @@
               <option>650–699</option>
               <option>Below 650</option>
             </select>
+
             <select>
               <option>Cosigner available?</option>
               <option>Yes</option>
               <option>No</option>
             </select>
+
             <textarea rows="4" placeholder="Anything else you'd like us to know?"></textarea>
             <button type="submit">Get Pre-Approved</button>
           </form>
-          <div class="form-note">This is a pre-approval request only. Final approval and funding terms are determined after review.</div>
+
+          <div class="form-note">
+            This is a pre-qualification / pre-approval request only. It is not a commitment to lend,
+            not a guaranteed rate quote, and not final approval.
+          </div>
+
+          <div class="trust-badges">
+            <span class="trust-badge">Aviation-focused</span>
+            <span class="trust-badge">Nationwide</span>
+            <span class="trust-badge">Estimate first</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section band" id="calculator">
+    <div class="container">
+      <div class="section-title">
+        <p>Loan Calculator</p>
+        <h2>Estimate your monthly payment before you apply.</h2>
+        <span>Use the calculator below to get a quick idea of what flight training financing could look like.</span>
+      </div>
+
+      <div class="calculator-wrap">
+        <div class="calc-card">
+          <h3>Customize Your Estimate</h3>
+          <p style="margin-bottom: 18px;">Adjust loan amount, down payment, term, and rate to model a payment range.</p>
+
+          <label for="loanAmount">Loan Amount</label>
+          <input type="range" id="loanAmount" min="5000" max="150000" step="500" value="85000">
+          <div class="range-row">
+            <span>Total training cost</span>
+            <strong id="loanAmountValue">$85,000</strong>
+          </div>
+
+          <label for="downPayment">Down Payment</label>
+          <input type="range" id="downPayment" min="0" max="50000" step="500" value="5000">
+          <div class="range-row">
+            <span>Paid up front</span>
+            <strong id="downPaymentValue">$5,000</strong>
+          </div>
+
+          <label for="interestRate">Estimated APR</label>
+          <input type="range" id="interestRate" min="4" max="18" step="0.1" value="9.5">
+          <div class="range-row">
+            <span>Annual rate</span>
+            <strong id="interestRateValue">9.5%</strong>
+          </div>
+
+          <label for="loanTerm">Loan Term</label>
+          <input type="range" id="loanTerm" min="3" max="20" step="1" value="10">
+          <div class="range-row">
+            <span>Repayment timeline</span>
+            <strong id="loanTermValue">10 years</strong>
+          </div>
+        </div>
+
+        <div class="calc-card">
+          <div class="calc-hero-result">
+            <p>Estimated Monthly Payment</p>
+            <h3 id="monthlyPayment">$0</h3>
+          </div>
+
+          <div class="calc-results">
+            <div class="calc-result-row">
+              <span>Estimated amount financed</span>
+              <strong id="financedAmount">$0</strong>
+            </div>
+            <div class="calc-result-row">
+              <span>Total interest paid</span>
+              <strong id="totalInterest">$0</strong>
+            </div>
+            <div class="calc-result-row">
+              <span>Total repayment</span>
+              <strong id="totalRepayment">$0</strong>
+            </div>
+            <div class="calc-result-row" style="border-bottom:none; padding-bottom:0;">
+              <span>Total project cost</span>
+              <strong id="totalProjectCost">$0</strong>
+            </div>
+          </div>
+
+          <div style="margin-top: 24px;">
+            <a href="#apply" class="btn-primary">Continue to Application</a>
+          </div>
+
+          <div class="calc-note">
+            This calculator provides estimates only and does not represent a credit decision,
+            offer, or commitment to lend. Actual rates, terms, and approvals may vary.
+          </div>
+        </div>
+      </div>
+
+      <div class="trust-strip">
+        <div class="trust-strip-card">
+          <h3>Estimate first</h3>
+          <p>Help borrowers understand the range before submitting an application.</p>
+        </div>
+        <div class="trust-strip-card">
+          <h3>Clean process</h3>
+          <p>Start with a simple pre-qualification flow built for student pilots.</p>
+        </div>
+        <div class="trust-strip-card">
+          <h3>Aviation specific</h3>
+          <p>Messaging and structure built around real pilot training programs.</p>
+        </div>
+        <div class="trust-strip-card">
+          <h3>Nationwide focus</h3>
+          <p>Designed to support students and schools across the United States.</p>
         </div>
       </div>
     </div>
@@ -454,25 +1021,40 @@
         <span>Designed to make the first step easier for future pilots who are serious about getting started.</span>
       </div>
 
-      <div style="margin: 0 auto 30px; max-width: 980px; background: linear-gradient(135deg, #0b1320, #172033); color: white; border-radius: 26px; padding: 28px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; box-shadow: 0 18px 36px rgba(2,6,23,0.08);">
+      <div
+        style="
+          margin: 0 auto 30px;
+          max-width: 980px;
+          background: linear-gradient(135deg, #06101c, #1b3554);
+          color: white;
+          border-radius: 26px;
+          padding: 28px;
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 18px;
+          box-shadow: 0 18px 36px rgba(2,6,23,0.16);
+        "
+      >
         <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; padding: 20px;">
-          <div style="font-size: 12px; text-transform: uppercase; letter-spacing: .12em; color: #f7d488; margin-bottom: 8px; font-weight: 700;">Mission</div>
+          <div style="font-size: 12px; text-transform: uppercase; letter-spacing: .12em; color: #f4d58d; margin-bottom: 8px; font-weight: 700;">Mission</div>
           <div style="font-size: 18px; font-weight: 700; margin-bottom: 8px;">Help more pilots get airborne</div>
           <div style="font-size: 14px; color: #cbd5e1;">Built around the real path from first lesson to advanced ratings.</div>
         </div>
+
         <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; padding: 20px;">
-          <div style="font-size: 12px; text-transform: uppercase; letter-spacing: .12em; color: #f7d488; margin-bottom: 8px; font-weight: 700;">Programs</div>
+          <div style="font-size: 12px; text-transform: uppercase; letter-spacing: .12em; color: #f4d58d; margin-bottom: 8px; font-weight: 700;">Programs</div>
           <div style="font-size: 18px; font-weight: 700; margin-bottom: 8px;">From PPL to career track</div>
           <div style="font-size: 14px; color: #cbd5e1;">Aviation-focused support for the training pilots actually pursue.</div>
         </div>
+
         <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; padding: 20px;">
-          <div style="font-size: 12px; text-transform: uppercase; letter-spacing: .12em; color: #f7d488; margin-bottom: 8px; font-weight: 700;">Audience</div>
+          <div style="font-size: 12px; text-transform: uppercase; letter-spacing: .12em; color: #f4d58d; margin-bottom: 8px; font-weight: 700;">Audience</div>
           <div style="font-size: 18px; font-weight: 700; margin-bottom: 8px;">Student pilots nationwide</div>
           <div style="font-size: 14px; color: #cbd5e1;">Designed to feel familiar and credible to people in aviation.</div>
         </div>
       </div>
 
-      <div class="features">
+      <div class="feature-grid">
         <div class="feature">
           <div class="feature-icon">01</div>
           <h3>Fast Process</h3>
@@ -527,18 +1109,38 @@
         <h2>Built for career-minded aviation training.</h2>
         <span>Structured for students pursuing serious flight training programs.</span>
       </div>
-      <div class="trust-grid">
-        <div class="trust-item">
+
+      <div class="support-grid">
+        <div class="support-card">
           <h3>Private Pilot Training</h3>
           <p>Support for students beginning their path in aviation.</p>
         </div>
-        <div class="trust-item">
+        <div class="support-card">
           <h3>Advanced Ratings</h3>
           <p>Instrument, Commercial, CFI, and accelerated career-focused training.</p>
         </div>
-        <div class="trust-item">
+        <div class="support-card">
           <h3>Flight School Partnerships</h3>
           <p>Built to help schools convert more serious students into enrolled trainees.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top: 0;">
+    <div class="container">
+      <div class="disclosure-grid">
+        <div class="disclosure-card">
+          <h3>Clear Positioning</h3>
+          <p>Make it obvious that estimates and pre-qualification do not equal final approval, loan terms, or a commitment to lend.</p>
+        </div>
+        <div class="disclosure-card">
+          <h3>Professional Flow</h3>
+          <p>A strong calculator, cleaner form, and real footer pages instantly make the site feel more credible.</p>
+        </div>
+        <div class="disclosure-card">
+          <h3>Built to Scale</h3>
+          <p>This layout gives you room to add partner schools, testimonials, disclosures, and real lender integrations later.</p>
         </div>
       </div>
     </div>
@@ -557,16 +1159,18 @@
         </div>
 
         <div class="partner-list">
-          <div style="display:flex; align-items:center; gap:10px; margin-bottom:16px; color:#f7d488; font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:.12em;">
+          <div style="display:flex; align-items:center; gap:10px; margin-bottom:16px; color:#f4d58d; font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:.12em;">
             <span>✈</span>
             <span>Aviation Partnership Focus</span>
           </div>
+
           <ul>
             <li>• Faster student start dates</li>
             <li>• Cleaner intake experience</li>
             <li>• Built for career-minded pilots</li>
             <li>• Serving student pilots nationwide</li>
           </ul>
+
           <div style="margin-top: 20px;">
             <a href="#apply" class="btn-primary">Become a Partner School</a>
           </div>
@@ -582,6 +1186,7 @@
         <h2>Common questions.</h2>
         <span>Simple answers for students and schools.</span>
       </div>
+
       <div class="faq-grid">
         <div class="faq-item">
           <h3>What can flight school loans cover?</h3>
@@ -598,6 +1203,14 @@
         <div class="faq-item">
           <h3>How fast is the initial review?</h3>
           <p>The goal is to provide a clean first step and a quick review timeline for qualified applicants.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Is the calculator an approval?</h3>
+          <p>No. The calculator is for informational purposes only and does not represent final underwriting or a loan offer.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Can I start with no FAA medical yet?</h3>
+          <p>Potentially, yes. That depends on program requirements, lender criteria, and where you are in the training process.</p>
         </div>
       </div>
     </div>
@@ -616,24 +1229,127 @@
 
   <section class="section" style="padding-top:0;">
     <div class="container">
-      <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:28px; padding:32px; text-align:center;">
+      <div class="aviation-focus-box">
         <div style="font-size:12px; text-transform:uppercase; letter-spacing:.14em; color:#b8892d; font-weight:700; margin-bottom:10px;">Aviation Focus</div>
-        <h3 style="font-size:32px; line-height:1.1; letter-spacing:-1px; margin-bottom:12px;">Built around the real pilot training journey.</h3>
-        <p style="max-width:760px; margin:0 auto; color:#64748b; font-size:17px;">From first-time student pilots to advanced rating applicants, FlightSchoolLoan.com is designed to feel familiar to people in aviation and professional enough for schools, lenders, and serious borrowers.</p>
+        <h3>Built around the real pilot training journey.</h3>
+        <p>
+          From first-time student pilots to advanced rating applicants, FlightSchoolLoan.com is designed
+          to feel familiar to people in aviation and professional enough for schools, lenders, and serious borrowers.
+        </p>
       </div>
     </div>
   </section>
 
   <footer>
     <div class="container footer-wrap">
-      <div>© 2026 FlightSchoolLoan.com. All rights reserved.</div>
+      <div>
+        <div class="footer-brand">© 2026 FlightSchoolLoan.com. All rights reserved.</div>
+        <div class="footer-disclosure">
+          Loan estimates, rate examples, and pre-qualification requests shown on this site are for informational
+          purposes only and do not guarantee approval, rates, or final terms. This site is intended to help users
+          explore potential financing options for aviation training and does not itself constitute a final credit
+          decision, commitment to lend, or binding disclosure.
+        </div>
+      </div>
+
       <div class="footer-links">
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms of Use</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Use</a>
+        <a href="disclosures.html">Disclosures</a>
+        <a href="contact.html">Contact</a>
         <a href="#apply">Apply</a>
       </div>
     </div>
   </footer>
 
+  <script>
+    const mobileToggle = document.getElementById("mobileToggle");
+    const mobileMenu = document.getElementById("mobileMenu");
+
+    mobileToggle.addEventListener("click", () => {
+      mobileMenu.classList.toggle("open");
+      mobileToggle.textContent = mobileMenu.classList.contains("open") ? "✕" : "☰";
+    });
+
+    document.querySelectorAll(".mobile-menu a").forEach(link => {
+      link.addEventListener("click", () => {
+        mobileMenu.classList.remove("open");
+        mobileToggle.textContent = "☰";
+      });
+    });
+
+    const loanAmount = document.getElementById("loanAmount");
+    const downPayment = document.getElementById("downPayment");
+    const interestRate = document.getElementById("interestRate");
+    const loanTerm = document.getElementById("loanTerm");
+
+    const loanAmountValue = document.getElementById("loanAmountValue");
+    const downPaymentValue = document.getElementById("downPaymentValue");
+    const interestRateValue = document.getElementById("interestRateValue");
+    const loanTermValue = document.getElementById("loanTermValue");
+
+    const monthlyPayment = document.getElementById("monthlyPayment");
+    const financedAmount = document.getElementById("financedAmount");
+    const totalInterest = document.getElementById("totalInterest");
+    const totalRepayment = document.getElementById("totalRepayment");
+    const totalProjectCost = document.getElementById("totalProjectCost");
+
+    function formatCurrency(value) {
+      return new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+        maximumFractionDigits: 0
+      }).format(value);
+    }
+
+    function calculateLoan() {
+      const totalCost = parseFloat(loanAmount.value);
+      const upfront = parseFloat(downPayment.value);
+      const principal = Math.max(totalCost - upfront, 0);
+      const annualRate = parseFloat(interestRate.value) / 100;
+      const monthlyRate = annualRate / 12;
+      const totalMonths = parseFloat(loanTerm.value) * 12;
+
+      loanAmountValue.textContent = formatCurrency(totalCost);
+      downPaymentValue.textContent = formatCurrency(upfront);
+      interestRateValue.textContent = `${parseFloat(interestRate.value).toFixed(1)}%`;
+      loanTermValue.textContent = `${loanTerm.value} years`;
+
+      if (principal <= 0 || totalMonths <= 0) {
+        monthlyPayment.textContent = "$0";
+        financedAmount.textContent = "$0";
+        totalInterest.textContent = "$0";
+        totalRepayment.textContent = "$0";
+        totalProjectCost.textContent = "$0";
+        return;
+      }
+
+      let payment = 0;
+
+      if (monthlyRate === 0) {
+        payment = principal / totalMonths;
+      } else {
+        payment =
+          (principal * monthlyRate * Math.pow(1 + monthlyRate, totalMonths)) /
+          (Math.pow(1 + monthlyRate, totalMonths) - 1);
+      }
+
+      const totalPaid = payment * totalMonths;
+      const interestPaid = totalPaid - principal;
+      const projectTotal = totalPaid + upfront;
+
+      monthlyPayment.textContent = formatCurrency(payment);
+      financedAmount.textContent = formatCurrency(principal);
+      totalInterest.textContent = formatCurrency(interestPaid);
+      totalRepayment.textContent = formatCurrency(totalPaid);
+      totalProjectCost.textContent = formatCurrency(projectTotal);
+    }
+
+    [loanAmount, downPayment, interestRate, loanTerm].forEach(input => {
+      input.addEventListener("input", calculateLoan);
+    });
+
+    calculateLoan();
+  </script>
 </body>
 </html>
