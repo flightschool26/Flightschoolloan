@@ -16,7 +16,6 @@
       min-height: 100vh;
       margin: 0;
     }
-
     .card {
       width: min(420px, 92%);
       background: white;
@@ -25,16 +24,8 @@
       padding: 28px;
       box-shadow: 0 10px 30px rgba(0,0,0,.08);
     }
-
-    h1 {
-      margin: 0 0 10px;
-    }
-
-    p {
-      color: #64748b;
-      margin: 0 0 20px;
-    }
-
+    h1 { margin: 0 0 10px; }
+    p { color: #64748b; margin: 0 0 20px; }
     input {
       width: 100%;
       padding: 14px;
@@ -44,7 +35,6 @@
       box-sizing: border-box;
       font-size: 15px;
     }
-
     button {
       width: 100%;
       padding: 14px;
@@ -57,29 +47,17 @@
       margin-bottom: 10px;
       font-size: 15px;
     }
-
     .secondary {
       background: #0a1728;
       color: white;
     }
-
     .message {
       margin-top: 14px;
       font-size: 14px;
       color: #0f766e;
+      min-height: 20px;
     }
-
-    .error {
-      color: #b91c1c;
-    }
-
-    .small-link {
-      display: inline-block;
-      margin-top: 10px;
-      color: #334155;
-      text-decoration: none;
-      font-size: 14px;
-    }
+    .error { color: #b91c1c; }
   </style>
 </head>
 <body>
@@ -94,8 +72,6 @@
     <button id="loginBtn" class="secondary">Log In</button>
 
     <div id="message" class="message"></div>
-
-    <a class="small-link" href="index.html">← Back to home</a>
   </div>
 
   <script>
@@ -113,12 +89,12 @@
 
       if (!email || !password) {
         messageEl.textContent = "Enter email and password.";
-        messageEl.classList.add("error");
+        messageEl.className = "message error";
         return;
       }
 
-      messageEl.classList.remove("error");
       messageEl.textContent = "Creating account...";
+      messageEl.className = "message";
 
       const { error } = await supabase.auth.signUp({
         email: email,
@@ -127,11 +103,12 @@
 
       if (error) {
         messageEl.textContent = error.message;
-        messageEl.classList.add("error");
+        messageEl.className = "message error";
         return;
       }
 
       messageEl.textContent = "Account created. Now log in.";
+      messageEl.className = "message";
     });
 
     document.getElementById("loginBtn").addEventListener("click", async () => {
@@ -140,12 +117,12 @@
 
       if (!email || !password) {
         messageEl.textContent = "Enter email and password.";
-        messageEl.classList.add("error");
+        messageEl.className = "message error";
         return;
       }
 
-      messageEl.classList.remove("error");
       messageEl.textContent = "Logging in...";
+      messageEl.className = "message";
 
       const { error } = await supabase.auth.signInWithPassword({
         email: email,
@@ -154,7 +131,7 @@
 
       if (error) {
         messageEl.textContent = error.message;
-        messageEl.classList.add("error");
+        messageEl.className = "message error";
         return;
       }
 
