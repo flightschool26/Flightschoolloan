@@ -36,7 +36,11 @@
       box-shadow: 0 10px 30px rgba(0,0,0,.06);
     }
 
-    button, a.btn {
+    h1, h2 {
+      margin-top: 0;
+    }
+
+    .btn, button {
       display: inline-block;
       padding: 12px 18px;
       border-radius: 12px;
@@ -46,6 +50,12 @@
       color: #0a1728;
       font-weight: 700;
       cursor: pointer;
+      font-size: 14px;
+    }
+
+    .btn-dark {
+      background: #0a1728;
+      color: white;
     }
 
     .muted {
@@ -56,15 +66,36 @@
       padding: 14px 0;
       border-bottom: 1px solid #e2e8f0;
     }
+
+    .status {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
   </style>
 </head>
 <body>
   <div class="wrap">
     <div class="topbar">
-      <h1>Your Dashboard</h1>
       <div>
+        <h1>Your Dashboard</h1>
+        <p class="muted">View your application status and continue your financing process.</p>
+      </div>
+
+      <div class="actions">
         <a class="btn" href="application.html">Start / Update Application</a>
-        <button id="logoutBtn">Log Out</button>
+        <button id="logoutBtn" class="btn-dark">Log Out</button>
       </div>
     </div>
 
@@ -81,9 +112,12 @@
     const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
 
     async function loadDashboard() {
-      const { data: { user } } = await supabase.auth.getUser();
+      const {
+        data: { user },
+        error: userError
+      } = await supabase.auth.getUser();
 
-      if (!user) {
+      if (userError || !user) {
         window.location.href = "login.html";
         return;
       }
@@ -91,6 +125,7 @@
       const { data, error } = await supabase
         .from("applications")
         .select("*")
+        .eq("user_id", user.id)
         .order("created_at", { ascending: false });
 
       const appList = document.getElementById("appList");
@@ -111,9 +146,15 @@
       appList.innerHTML = data.map(app => `
         <div class="app-row">
           <strong>${app.full_name || "Application"}</strong><br>
-          <span class="muted">Program: ${app.program || "N/A"}</span><br>
+          <span class="muted">Email: ${app.email || "N/A"}</span><br>
+          <span class="muted">Phone: ${app.phone || "N/A"}</span><br>
           <span class="muted">Flight School: ${app.flight_school || "N/A"}</span><br>
-          <span class="muted">Status: ${app.status || "Submitted"}</span>
+          <span class="muted">Program: ${app.program || "N/A"}</span><br>
+          <span class="muted">Medical: ${app.medical || "N/A"}</span><br>
+          <span class="muted">Estimated Cost: ${app.cost || "N/A"}</span><br>
+          <span class="muted">Credit: ${app.credit || "N/A"}</span><br>
+          <span class="muted">Cosigner: ${app.cosigner || "N/A"}</span><br>
+          <div class="status">Status: ${app.status || "Submitted"}</div>
         </div>
       `).join("");
     }
