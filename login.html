@@ -105,9 +105,15 @@
       const email = emailEl.value.trim();
       const password = passwordEl.value.trim();
 
+      if (!email || !password) {
+        messageEl.textContent = "Enter email and password";
+        messageEl.classList.add("error");
+        return;
+      }
+
       const { error } = await supabase.auth.signUp({
-        email,
-        password
+        email: email,
+        password: password
       });
 
       if (error) {
@@ -116,7 +122,7 @@
         return;
       }
 
-      messageEl.textContent = "Account created. You can now log in.";
+      messageEl.textContent = "Account created!";
     });
 
     document.getElementById("loginBtn").addEventListener("click", async () => {
