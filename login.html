@@ -121,7 +121,7 @@
         return;
       }
 
-      messageEl.textContent = "Account created!";
+      messageEl.textContent = "Account created! You can now log in.";
     });
 
     document.getElementById("loginBtn").addEventListener("click", async () => {
@@ -148,7 +148,10 @@
         return;
       }
 
-      messageEl.textContent = "Login successful.";
+      messageEl.textContent = "Login successful. Redirecting . . .";
+      setTimeout(() => {
+      window.location.href = "dashboard.html";
+    }, 800);
     });
   </script>
 </body>
