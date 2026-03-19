@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Login | FlightSchoolLoan.com</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>
+    body {
+      font-family: Inter, Arial, sans-serif;
+      background: #f8fafc;
+      color: #0f172a;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+    .card {
+      width: min(420px, 92%);
+      background: white;
+      border: 1px solid #e2e8f0;
+      border-radius: 20px;
+      padding: 28px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.08);
+    }
+    h1 {
+      margin: 0 0 10px;
+    }
+    p {
+      color: #64748b;
+      margin: 0 0 20px;
+    }
+    input {
+      width: 100%;
+      padding: 14px;
+      margin-bottom: 12px;
+      border: 1px solid #cbd5e1;
+      border-radius: 12px;
+      box-sizing: border-box;
+      font-size: 15px;
+    }
+    button {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 12px;
+      background: #d4a84f;
+      color: #0a1728;
+      font-weight: 700;
+      cursor: pointer;
+      margin-bottom: 10px;
+      font-size: 15px;
+    }
+    .secondary {
+      background: #0a1728;
+      color: white;
+    }
+    .message {
+      margin-top: 14px;
+      font-size: 14px;
+      color: #0f766e;
+    }
+    .error {
+      color: #b91c1c;
+    }
+    .small-link {
+      display: inline-block;
+      margin-top: 10px;
+      color: #334155;
+      text-decoration: none;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Login / Sign Up</h1>
+    <p>Access your application portal.</p>
+
+    <input type="email" id="email" placeholder="Email address" />
+    <input type="password" id="password" placeholder="Password" />
+
+    <button id="signupBtn">Create Account</button>
+    <button id="loginBtn" class="secondary">Log In</button>
+
+    <div id="message" class="message"></div>
+
+    <a class="small-link" href="index.html">← Back to home</a>
+  </div>
+
+  <script>
+    const supabaseUrl = "https://rfepvfyrgjojuavjassby.supabase.co";
+    const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJmZXB2ZnlyZ2pvdWFqdmFzc2J5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM4ODA4MDgsImV4cCI6MjA4OTQ1NjgwOH0.9vFK8aB0CQb8JozNlFQzT9Vo8l6e-zKMlmOeU4pKsrU";
+    const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+    const emailEl = document.getElementById("email");
+    const passwordEl = document.getElementById("password");
+    const messageEl = document.getElementById("message");
+
+    document.getElementById("signupBtn").addEventListener("click", async () => {
+      messageEl.textContent = "";
+      messageEl.classList.remove("error");
+
+      const email = emailEl.value.trim();
+      const password = passwordEl.value.trim();
+
+      const { error } = await supabase.auth.signUp({
+        email,
+        password
+      });
+
+      if (error) {
+        messageEl.textContent = error.message;
+        messageEl.classList.add("error");
+        return;
+      }
+
+      messageEl.textContent = "Account created. You can now log in.";
+    });
+
+    document.getElementById("loginBtn").addEventListener("click", async () => {
+      messageEl.textContent = "";
+      messageEl.classList.remove("error");
+
+      const email = emailEl.value.trim();
+      const password = passwordEl.value.trim();
+
+      const { error } = await supabase.auth.signInWithPassword({
+        email,
+        password
+      });
+
+      if (error) {
+        messageEl.textContent = error.message;
+        messageEl.classList.add("error");
+        return;
+      }
+
+      messageEl.textContent = "Login successful. Redirecting...";
+      setTimeout(() => {
+        window.location.href = "dashboard.html";
+      }, 800);
+    });
+  </script>
+</body>
+</html>
